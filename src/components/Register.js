@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { Button, Form, FormFeedback, FormGroup, Input, Label } from "reactstrap"
 
 const Register = () => {
@@ -10,13 +11,17 @@ const Register = () => {
     const [message, setMessage] = useState('')
     const [valid, setValid] = useState('')
 
+    const navigate = useNavigate()
 
     const handleRegister = (e) => {
         e.preventDefault()
         console.log(username, password, confirmPassword)
         axios.post('http://localhost:3005/users/register',
             { username, password })
-            .then(response => console.log(response.data))
+            .then(res => {
+                window.alert(res.data.status)
+                navigate('/login')
+            })
             .catch(err => console.log(err))
     }
 
