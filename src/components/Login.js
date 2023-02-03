@@ -15,7 +15,7 @@ function Login() {
             .then(res => {
                 window.localStorage.setItem('token', res.data.token)
                 window.alert(res.data.status)
-                navigate('/')
+                navigate('/books')
             }).catch(err => window.alert(err.response.data.msg))
     }
     return (
